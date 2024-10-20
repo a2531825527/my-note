@@ -81,3 +81,31 @@
                 return j + 1;
             }
             ```
+## 977. 有序数组的平方
+- **题目：给你一个按 非递减顺序 排序的整数数组 nums，返回 每个数字的平方 组成的新数组，要求也按 非递减顺序 排序。**
+    1. ### 双指针法
+        - #### 逐个比较头指针和尾指针的平方大小，依次填入到新数组中。 
+        ```csharp
+        public int[] SortedSquares(int[] nums)
+        {
+            int i=0;
+            int j=nums.Length-1;
+            int[] newnums = new int[nums.Length];
+            int n=nums.Length-1;
+
+            while (j>=i&&n>=0) 
+            {
+                newnums[n] = nums[j] * nums[j] > nums[i] * nums[i] ? nums[j] * nums[j] : nums[i] * nums[i];
+               
+                if(nums[j] * nums[j] > nums[i] * nums[i]){
+                    --j;
+                }
+                else{
+                    ++i;
+                }
+               
+                n--;
+            }
+            return newnums;
+        }
+        ```
